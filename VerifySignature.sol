@@ -8,8 +8,6 @@ supply a hash of the message (hashed with keccac256), and the message signature
 An Ethereum (or Bitcoin) address is essentially a hashed version of the public key. 
 If you have a public key, you can hash it, and you'll have a wallet address.
 
-A Public Key is made up of 128 Hex Characters, and corresponds to the private key created using the cryptographic functions.
-
 Remember, public keys can be created using private keys; however, you CANNOT create Private keys from Public keys. 
 (Public key generation is a ONE-WAY function)
 */
