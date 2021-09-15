@@ -81,6 +81,6 @@ You'll need both the hashed message value, and the signature value. Paste both v
 
 You can also validate the string message that was hashed, which in the example signSomething.js file, was "Banana" (Note the quotes, and the capital B)
 
-Use the "CheckIfDataIsValid" function call, and if it's valid, it will return true, proving the signer signed this message with the address!
+Use the "CheckIfDataIsValid" function call, and if it's valid, it will return true, proving the signer signed this message with the address. If any part of the string is wrong, for example changing the captial B to a lowercase b, then it will return false, proving the original message doesn't match the hash, and therefore is not the same signed message. 
 
 
