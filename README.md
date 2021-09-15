@@ -1,6 +1,8 @@
 # smart-contract-signing-and-recovery
 How to sign a smart contract and recover the public key
 
+(Note this can also be done with this tool: https://app.mycrypto.com/sign-message)
+
 A demonstration of how you can hash a message using keccac256, which converts it to a hex string.
 
 firstly install eth-crypto tool with node (ensure node is installed) and run the following command.
@@ -58,6 +60,24 @@ signature: 0x43125ece782a09443c7bd2f42df837021dc5b72e03881bcd7c4c559f51ee3a38364
 signer public key: 0xbC2771BcEb3ee8E050B14Ae4ee5dCf303DFfA1eD
 ```
 
-Now we have a signature to work with, let's deploy the smart contract in solidity wih Remix.
+Now we have a signature to work with, let's deploy the VerifySignature.sol smart contract in solidity wih Remix.
+(if you don't know how to do this, read a guide on deploying smart contracts here: tbc)
+
+Once deployed, paste the signature value into the "splitSignature" function call, and it will return three values:
+
+0,1,2
+
+these represent ECDSA v,r,s values
+
+0 = v
+1 = r
+2 = s
+
+You don't need to make note of these values, just be aware that when you are recovering the signer (wallet address), this function is being called. 
+You can read more about the significance of v,r,s values in ECDSA here - tbc
+
+Ok so let's actually recover the signer (wallet) address, by using the "recoverSigner" function call.
+
+You'll need both the signed message value, and the 
 
 
