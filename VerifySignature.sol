@@ -2,7 +2,8 @@
 A simple smart contract that is used to return the v,r,s values (0,1,2) by splitting up a supplied signature, 
 using the "splitSignature" function call.
 
-You can also recover a signer (wallet address) using the "recoverSigner" function call, providing you can supply a hash of the message, and the message signature
+You can also recover a signer (wallet address) using the "recoverSigner" function call, providing you can 
+supply a hash of the message (hashed with keccac256), and the message signature
 
 An Ethereum (or Bitcoin) address is essentially a hashed version of the public key. 
 If you have a public key, you can hash it, and you'll have a wallet address.
