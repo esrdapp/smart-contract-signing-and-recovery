@@ -17,9 +17,9 @@ pragma solidity ^0.8.0;
 contract Verify {
 
 
-   function checkIfDataIsValid(string memory textString, bytes memory signature, address publicKey) public pure returns(bool){
-       bytes32 message = keccak256(abi.encodePacked(textString, signature));
-       return (recoverPublicKey(message, signature) == publicKey);
+   function checkIfDataIsValid(string memory textString, bytes memory signature, address publicKey) public pure returns(address, bool){
+       bytes32 message = keccak256(abi.encodePacked(textString));
+       return (publicKey, (recoverPublicKey(message, signature) == publicKey));
    }
 
 
