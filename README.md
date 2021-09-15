@@ -3,9 +3,7 @@ How to sign a smart contract and recover the public key
 
 (Note this can also be done with this tool: https://app.mycrypto.com/sign-message)
 
-A demonstration of how you can hash a message using keccac256, which converts it to a hex string.
-
-firstly install eth-crypto tool with node (ensure node is installed) and run the following command.
+Firstly install eth-crypto tool with node (ensure node is installed) and run the following command.
 
 ```
 npm install -g eth-crypto --save
@@ -20,8 +18,8 @@ e.g.
 ```
 {
   address: "0x90f8bf6a349f320ead074411a4b0e7944ea8c9c1",
-  privateKey: "0x4f3edf983ac236a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
-  publicKey: "971a0b8bd54f7698b017b7785e77a5d7da2154ab5fab68644f8af9276edbec4fd001c57af2611fc58760992b7c4a575d6d1f6a875b68963dc868d06729efb2e5"
+  privateKey: "0x4f3edf983ac236a65a842ce7c78d9aa706d3b124cce9c46f30d7d21715b23b1d",
+  publicKey: "971a0b8bd54f7698b017b7785e77a5d7da2154ab5fab68644f8af9276edbec4fd00124caf2611fc58760992b7c4a575d6d1f6a875b68963dc868d06729efb2e5"
 };
 ```
 
@@ -54,9 +52,11 @@ You should see something similar to this:
 ```
 C:\Users\PC\Desktop\signer>node signSomething.js
 secp256k1 unavailable, reverting to browser version
-message: 0x97c943890b15f4dea02c3ae1653252489599957b280a95bf2e533fdbc8facb58
-signature: 0x43125ece782a09443c7bd2f42df837021dc5b72e03881bcd7c4c559f51ee3a3836427174942a6906f296d6456342b3c7b8497905931e4c9cf3b0a20c458c2bd51b
-signer public key: 0xbC2771BcEb3ee8E050B14Ae4ee5dCf303DFfA1eD
+hashed message: 0xc841e9c9424e154d06435d7a59c01135e9dab938da708d237dfbf24e92881436
+signature: 0x75d0dbc28df8374b394822ac6b2327e0c524570933be0861692bac3075aa68273c3d14b3cb49985e1fe2f8d97c6e69bd622485f5eaa39d6f323920fc85a6212c1c
+signer's private_key: 0x350cee6da5248e2a3637b06c227e05652fb32c203a14463930a816e2d91cc1a0
+signer's public_key: 2dfb5e11707d86392879d704e2c2aaf247ce69845ce9d3f6a4738924efe75484814451094d87f57e864e35ecc5025d68170daa36e06be64122024bae8e8cba4b
+signer's wallet_address: 0x6AEf0e32352E00b9E2c9Aa774E58DbCF06edaBD8
 ```
 
 Now we have a signature to work with, let's deploy the Verify.sol smart contract in solidity wih Remix.
@@ -72,15 +72,15 @@ these represent ECDSA v,r,s values
 1 = r
 2 = s
 
-You don't need to make note of these values, just be aware that when you are recovering the public key, this function is being called. 
+You don't need to make note of these values, just be aware that when you are recovering the signer's address, this function is being called. 
 You can read more about the significance of v,r,s values in ECDSA here - tbc
 
-Ok so let's actually recover the public key, by using the "recoverPublicKey" function call.
+Ok so let's actually recover the signer's address, by using the "recoverAddress" function call.
 
-You'll need both the hashed message value, and the signature value. Paste both values into the function call in Remix and it should output your public key!
+You'll need both the hashed message value, and the signature value. Paste both values into the function call in Remix and it should output the signer's address!
 
 You can also validate the string message that was hashed, which in the example signSomething.js file, was "Banana" (Note the quotes, and the capital B)
 
-Use the "CheckIfDataIsValid" function call, and if it's valid, it will return true, proving the signer signed this message!
+Use the "CheckIfDataIsValid" function call, and if it's valid, it will return true, proving the signer signed this message with the address!
 
 
