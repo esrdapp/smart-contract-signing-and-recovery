@@ -13,7 +13,7 @@ npm install -g eth-crypto --save
 
 Once this is installed, we'll use it to sign a message. you can use the signSomething.js file to allow eth-crypto do do four things:
 
-1. Create a new identity, which will consist of the following three fake attributes:
+1. Create a new identity, which once created will consist of the following three attributes:
 
 e.g.
 
@@ -29,7 +29,6 @@ e.g.
 
 ```
 [
-  { type: "uint256", value: "5" },
   { type: "string", value: "Banana" }
 ]
 ```
@@ -42,7 +41,7 @@ Note the data formatting here which must be valid with Solidity (https://solidit
 
 - the hash of the message
 - the signature 
-- the public key of the wallet
+- the public key of the wallet address (Note: To make an address from a public key, all you need to do is apply Keccak-256 to the key, and then take the last 20 bytes of the result. And that’s it.
 
 Let's run our signSomething.js file with node to do these steps:
 
@@ -60,7 +59,7 @@ signature: 0x43125ece782a09443c7bd2f42df837021dc5b72e03881bcd7c4c559f51ee3a38364
 signer public key: 0xbC2771BcEb3ee8E050B14Ae4ee5dCf303DFfA1eD
 ```
 
-Now we have a signature to work with, let's deploy the VerifySignature.sol smart contract in solidity wih Remix.
+Now we have a signature to work with, let's deploy the Verify.sol smart contract in solidity wih Remix.
 (if you don't know how to do this, read a guide on deploying smart contracts here: tbc)
 
 Once deployed, paste the signature value into the "splitSignature" function call, and it will return three values:
@@ -73,11 +72,15 @@ these represent ECDSA v,r,s values
 1 = r
 2 = s
 
-You don't need to make note of these values, just be aware that when you are recovering the signer (wallet address), this function is being called. 
+You don't need to make note of these values, just be aware that when you are recovering the public key, this function is being called. 
 You can read more about the significance of v,r,s values in ECDSA here - tbc
 
-Ok so let's actually recover the signer (wallet) address, by using the "recoverSigner" function call.
+Ok so let's actually recover the public key, by using the "recoverPublicKey" function call.
 
-You'll need both the signed message value, and the 
+You'll need both the hashed message value, and the signature value. Paste both values into the function call in Remix and it should output your public key!
+
+You can also validate the string message that was hashed, which in the example signSomething.js file, was "Banana" (Note the quotes, and the capital B)
+
+Use the "CheckIfDataIsValid" function call, and if it's valid, it will return true, proving the signer signed this message!
 
 
