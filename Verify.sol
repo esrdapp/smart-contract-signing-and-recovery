@@ -17,13 +17,13 @@ pragma solidity ^0.8.0;
 contract Verify {
 
 
-   function checkIfDataIsValid(string memory textString, bytes memory signature, address publicKey) public pure returns(address, bool){
+   function checkIfDataIsValid(string memory textString, bytes memory signature, address signerAddress) public pure returns(address, bool){
        bytes32 message = keccak256(abi.encodePacked(textString));
-       return (publicKey, (recoverPublicKey(message, signature) == publicKey));
+       return (signerAddress, (recoverSignerAddress(message, signature) == signerAddress));
    }
 
 
-   function recoverPublicKey(bytes32 hashedMessage, bytes memory signature) public pure returns (address){
+   function recoverSignerAddress(bytes32 hashedMessage, bytes memory signature) public pure returns (address){
        uint8 v;
        bytes32 r;
        bytes32 s;
