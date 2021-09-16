@@ -43,7 +43,7 @@ Note the data formatting here which must be valid with Solidity (https://solidit
 
 Let's run our signSomething.js file with node to do these steps:
 
-``
+```
 node signSomething.js
 ```
 
@@ -59,8 +59,8 @@ signer's public_key: 2dfb5e11707d86392879d704e2c2aaf247ce69845ce9d3f6a4738924efe
 signer's wallet_address: 0x6AEf0e32352E00b9E2c9Aa774E58DbCF06edaBD8
 ```
 
-Now we have a signature to work with, let's deploy the Verify.sol smart contract in solidity wih Remix.
-(if you don't know how to do this, read a guide on deploying smart contracts here: tbc)
+Now we have a signature to work with, let's deploy the Verify.sol smart contract in solidity using Remix.
+(if you don't know how to deploy a smart contract, you can find an example here: https://github.com/esrdapp/create-your-own-token)
 
 Once deployed, paste the signature value into the "splitSignature" function call, and it will return three values:
 
@@ -73,7 +73,7 @@ these represent ECDSA v,r,s values
 2 = s
 
 You don't need to make note of these values, just be aware that when you are recovering the signer's address, this function is being called. 
-You can read more about the significance of v,r,s values in ECDSA here - tbc
+You can read more about the significance of v,r,s values in ECDSA here - https://hackernoon.com/a-closer-look-at-ethereum-signatures-5784c14abecc
 
 Ok so let's actually recover the signer's address, by using the "recoverAddress" function call.
 
